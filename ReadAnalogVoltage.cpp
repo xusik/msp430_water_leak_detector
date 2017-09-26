@@ -35,7 +35,7 @@
 #define LED RED_LED
 
 Enrf24 radio(P2_0, P2_1, P2_2);  // P2.0=CE, P2.1=CSN, P2.2=IRQ
-const uint8_t txaddr[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0x01 };
+const uint8_t txaddr[] = { 0xDE, 0xAF, 0xFA, 0xCE, 0x01 };
 
 volatile int push_flag = LOW;
 
@@ -80,7 +80,7 @@ uint16_t Msp430_GetSupplyVoltage(void)
 void setup() {
 
   pinMode(PUSH2, INPUT_PULLUP); //Enable internal pullup
-  attachInterrupt(PUSH2, ps_out, RISING);
+  attachInterrupt(PUSH2, ps_out, FALLING);
   pinMode(LED, OUTPUT);
 
   SPI.begin();
