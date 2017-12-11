@@ -96,9 +96,11 @@ void loop() {
 		work_time = millis();
 
 		int sensorValue = Msp430_GetSupplyVoltage ();
+		int btState = 0;
 
 		  if (sensorValue < 2500){
 		      digitalWrite(LED, HIGH);   // turn the LED on (HIGH is the voltage level)
+		      int btState = 1;
 		  }else{
 		      digitalWrite(LED, LOW);   // turn the LED off
 		  }
@@ -112,7 +114,7 @@ void loop() {
 			delay(100);
 			if (button_now_pressed + !digitalRead(PUSH2) == 2){
 
-				    radio.print("lk/kt{\"s\":\"1\",\"b\":\"" + String(sensorValue) + "\"}");
+				    radio.print("lk/kt{\"s\":\"1\",\"b\":\"" + String(btState) + "\"}");
 				    radio.flush();  //
 				    delay(200);
 			}
