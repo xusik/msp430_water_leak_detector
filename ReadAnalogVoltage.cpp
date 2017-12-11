@@ -37,7 +37,6 @@ const uint8_t txaddr[] = { 0xDE, 0xAF, 0xFA, 0xCE, 0x01 };
 
 volatile int push_flag = LOW;
 
-const char *str_sens1 = "SENS1";
 int button_now_pressed, msp_ps = 0;
 unsigned long work_time = 0;
 
@@ -113,7 +112,7 @@ void loop() {
 			delay(100);
 			if (button_now_pressed + !digitalRead(PUSH2) == 2){
 
-				    radio.print(str_sens1);
+				    radio.print("lk/kt{\"s\":\"1\",\"b\":\"" + String(sensorValue) + "\"}");
 				    radio.flush();  //
 				    delay(200);
 			}
